@@ -6,6 +6,7 @@ import morgan from "morgan";
 
 import authProxy from "./proxies/auth.js";
 import appSettingProxy from "./proxies/app-setting.js";
+import inventoryProxy from "./proxies/inventory.js";
 
 import { authenticate }
 from "./common/middlewares/auth.js";
@@ -56,6 +57,18 @@ app.use(
   "/api/app-setting",
   authenticate,
   appSettingProxy
+);
+
+/*
+|--------------------------------------------------------------------------
+| Inventory Service
+|--------------------------------------------------------------------------
+*/
+
+app.use(
+  "/api/inventory",
+  authenticate,
+  inventoryProxy
 );
 
 export default app;

@@ -19,9 +19,9 @@ export const ENV = {
 
     APP_SETTING:
       process.env.APP_SETTING_SERVICE_URL,
-
-    // PRODUCT:
-    //   process.env.PRODUCT_SERVICE,
+    
+    INVENTORY:
+      process.env.INVENTORY_SERVICE_URL,
 
     // ORDER:
     //   process.env.ORDER_SERVICE,

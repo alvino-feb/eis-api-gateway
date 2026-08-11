@@ -9,6 +9,7 @@ export const buildSwagger =
     const [
       auth,
       appSetting,
+      inventory,
     ] = await Promise.all([
 
       axios.get(
@@ -17,6 +18,10 @@ export const buildSwagger =
 
       axios.get(
         `${ENV.SERVICES.APP_SETTING}/api-docs-json`
+      ),
+
+      axios.get(
+        `${ENV.SERVICES.INVENTORY}/api-docs-json`
       ),
 
     ]);
@@ -37,6 +42,17 @@ export const buildSwagger =
 
     });
 
+    const inventoryPaths = {};
+    Object.entries(
+        inventory.data.paths
+    ).forEach(([path, value]) => {
+
+        inventoryPaths[
+            `/api/inventory${path}`
+        ] = value;
+
+    });
+
     return {
 
       openapi: "3.0.0",
@@ -49,6 +65,7 @@ export const buildSwagger =
       paths: {
         ...authPaths,
         ...appSettingPaths,
+        ...inventoryPaths,
       },
 
       components: {
@@ -66,6 +83,9 @@ export const buildSwagger =
             ?.schemas || {}),
 
           ...(appSetting.data.components
+            ?.schemas || {}),
+
+          ...(inventory.data.components
             ?.schemas || {}),
 
         },
