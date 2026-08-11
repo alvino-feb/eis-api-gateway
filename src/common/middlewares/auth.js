@@ -19,8 +19,6 @@ export const authenticate = (
 
     if (!authHeader) {
 
-      console.log("NO AUTH HEADER");
-
       return res.status(401).json({
         success: false,
         message: "Unauthorized",
