@@ -23,7 +23,7 @@ export const ENV = {
     INVENTORY:
       process.env.INVENTORY_SERVICE_URL,
 
-    // ORDER:
-    //   process.env.ORDER_SERVICE,
+    SALES:
+      process.env.SALES_SERVICE_URL,
   },
 };
